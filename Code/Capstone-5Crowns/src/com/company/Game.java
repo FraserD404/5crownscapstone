@@ -79,6 +79,11 @@ public class Game{
             for (Player c : players) {
                 //TEMPORARY CODE TO SKIP BOT'S TURNS
 
+                if (c.getBot()){
+                    qPrint("A bot is taking their turn.");
+                    c.takeYourTurn();
+                    qPrint("The bot's turn is over.");
+                }
                 if (!c.getBot()) {
                     qPrint("Turn " + turn);
                     qPrint("It is now " + c.getName() + "'s turn.");

@@ -17,7 +17,7 @@ public class CardPile extends ArrayList<Card>{
     }
 
     public Card removeTopCard (){
-        return this.remove(this.size() - 1);
+        return this.remove(0);
     }
 
     public Card peekTopCard(){
