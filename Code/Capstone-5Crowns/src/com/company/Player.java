@@ -35,8 +35,6 @@ public class Player {
         else {
             int option = menu();
 
-            //qPrint("done with the menu " + option);
-
             if (option == 1) {
                 qPrint("Drawing card from deck...");
                 drawFromDeck();

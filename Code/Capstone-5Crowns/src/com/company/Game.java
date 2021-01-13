@@ -2,11 +2,8 @@ package com.company;
 import javax.management.ConstructorParameters;
 import java.io.IOException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.Random;
 
 //TODO: FOR SLIDING WINDOW HAND THING MAYBE SORT BOTH BY VALUE AND STRAIGHTS & COMPARE THE TWO
 
@@ -18,6 +15,9 @@ public class Game{
     private final String[] suits = new String[5];
     private final Player[] players;
     private final String[] botsNames = {"Beeper", "Booper", "Viking"};
+    private HashMap<String, Integer> scoreTable;
+
+
     public static boolean finalFrenzy;
 
     public boolean debug;
@@ -57,6 +57,8 @@ public class Game{
         for (int round = 3; round <= 13; round++){
             roundLogic(round);
         }
+
+        scoreHands(1);
     }
 
     /*
@@ -84,6 +86,7 @@ public class Game{
                     c.takeYourTurn();
                     qPrint("The bot's turn is over.");
                 }
+
                 if (!c.getBot()) {
                     qPrint("Turn " + turn);
                     qPrint("It is now " + c.getName() + "'s turn.");
@@ -92,6 +95,7 @@ public class Game{
                 }
 
                 if(finalFrenzy){
+                    scoreHands(0);
                     break;
                 }
             }
@@ -101,6 +105,52 @@ public class Game{
 
         turn = 1;
     }
+
+    // TODO: THIS SCORING METHOD ISN'T THE PROPER WAY TO DO STUFF
+    // TODO: FIX THIS WHEN GOING OUT IS POSSIBLE
+    // Thought: zero out every card when go out is possible to make things easier
+    // Fix this some time in the future
+
+    private void scoreHands(int end){
+
+        int tempScore = 0;
+        // Display final scores
+        if (end == 1){
+
+        }
+
+        //Update player hand scores
+        else{
+            //Player
+            for (Card c : players[0].playerHand){
+                tempScore += c.getValue();
+            }
+            scoreTable.put(players[0].getName(), tempScore);
+            tempScore = 0;
+
+            //Bot 1
+            for (Card c : players[1].playerHand){
+                tempScore += c.getValue();
+            }
+            scoreTable.put(botsNames[0], tempScore);
+            tempScore = 0;
+
+            //Bot 2
+            for (Card c : players[2].playerHand){
+                tempScore += c.getValue();
+            }
+            scoreTable.put(botsNames[1], tempScore);
+            tempScore = 0;
+
+            //Bot 3
+            for (Card c : players[3].playerHand){
+                tempScore += c.getValue();
+            }
+            scoreTable.put(botsNames[2], tempScore);
+            tempScore = 0;
+        }
+    }
+
     private void checkDeck(){
 
         qPrint("Checking Deck...");
@@ -142,15 +192,27 @@ public class Game{
     private void matchSetup(){
         finalFrenzy = false;
 
+        // Player Set up
+
         Scanner inner = new Scanner(System.in);
         qPrint("Welcome to Five Crowns!");
         qPrint("Please Enter Your Name: ");
         String name1 = inner.next();
+
         players[0] = new Player(name1, false);
 
         players[1] = new Player(botsNames[0], true);
 
         players[2] = new Player(botsNames[1], true);
+
+        players[3] = new Player(botsNames[2], true);
+
+        // Scoring set up
+
+        scoreTable.put(name1, 0);
+        scoreTable.put(botsNames[0], 0);
+        scoreTable.put(botsNames[1], 0);
+        scoreTable.put(botsNames[2], 0);
 
         //qPrint("Players Created");
     }
