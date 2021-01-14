@@ -2,13 +2,13 @@
 ###### 5 Crowns Simulator written in Java
 
 ### Project Structure:
-Capstone-5Crowns/src/com/company | **Directory where all classes are stored**
-Card.java  | **Card class that stores the value and suit of each Card**
-CardPile.java | **Extension of ArrayList, specially modified for Card specific tasks. Player Hands, Deck, and Discard Pile are all CardPile objects**
-Player.java | **Player class that stores the player's hand (CardPile), and if it is a bot or not. Bots are also Players**
-Game.java | **General class for game logic, score keeping, and decks storage.**
-Main.java | **Initialises starts the game by creating and calling the Game class.**
-GameLogger.java | **General logging class for debugging to file.**
+Capstone-5Crowns/src/com/company | **Directory where all classes are stored** <br/>
+Card.java  | **Card class that stores the value and suit of each Card** <br/>
+CardPile.java | **Extension of ArrayList, specially modified for Card specific tasks. Player Hands, Deck, and Discard Pile are all CardPile objects**<br/>
+Player.java | **Player class that stores the player's hand (CardPile), and if it is a bot or not. Bots are also Players**<br/>
+Game.java | **General class for game logic, score keeping, and decks storage.**<br/>
+Main.java | **Initialises starts the game by creating and calling the Game class.**<br/>
+GameLogger.java | **General logging class for debugging to file.**<br/>
 
 ### How to Run:
 Download the "Capstone-5Crowns" folder, and open in IntelliJ Community Edition.
