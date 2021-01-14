@@ -11,21 +11,21 @@ Main.java | **Initialises starts the game by creating and calling the Game class
 GameLogger.java | **General logging class for debugging to file.**<br/>
 
 ### How to Run:
-Download the "Capstone-5Crowns" folder, and open in IntelliJ Community Edition.
-Run 'main.java'.
-The files shared are all IntellIJ specific, however the classes could be used and ran in another IDE.
+Download the "Capstone-5Crowns" folder, and open in IntelliJ Community Edition. <br/>
+Run 'main.java'. <br/>
+The files shared are all IntellIJ specific, however the classes could be used and ran in another IDE. <br/>
 
 ### Current Feature List:
-Ability to play 13 hands of 5 Crowns
-Two random bots are also playing the game with you
+Ability to play 13 hands of 5 Crowns<br/>
+Two random bots are also playing the game with you<br/>
 
 ### Planned Feature List:
-Score verification and handling
-Jokers and wild card proper implementation
-Improved bot logic using machine learning
-Different types of bots (Random, SimpleAlgorithm, Advanced)
-GUI to replace current Terminal based UI
-Dynamic amount of players (up to 5, including human)
-Lots and lots of bug fixes
+Score verification and handling<br/>
+Jokers and wild card proper implementation<br/>
+Improved bot logic using machine learning<br/>
+Different types of bots (Random, SimpleAlgorithm, Advanced)<br/>
+GUI to replace current Terminal based UI<br/>
+Dynamic amount of players (up to 5, including human)<br/>
+Lots and lots of bug fixes<br/>
 
 
