@@ -1,6 +1,8 @@
 # jCrowns 
 ###### 5 Crowns Simulator written in Java
 
+###### JDK Version: 14 
+###### In IntelliJ Run/"Debug Configurations", set Main class to com.company.Main, and working directory to /Capstone-5Crowns
 
 ### Project Structure:
 Capstone-5Crowns/src/com/company | **Directory where all classes are stored** <br/>

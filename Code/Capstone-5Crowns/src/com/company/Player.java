@@ -77,9 +77,6 @@ public class Player {
             botFromPile();
         }
 
-        else{
-            qPrint("You shouldn't be here.");
-        }
 
     }
 
@@ -126,13 +123,8 @@ public class Player {
         //Change it up
         else if (wtd == 1){
             discardDeck.add(playerHand.remove((wtd2)));
-            playerHand.add(wtd2, drawn);
+            playerHand.add(drawn);
             qPrint("The bot changes it up.");
-        }
-
-        //????
-        else{
-            qPrint("Something went horribly wrong.");
         }
 
     }
@@ -272,9 +264,6 @@ public class Player {
     public boolean getBot(){
         return isBot;
     }
-
-
-
 
 } //End of the Player class here
 

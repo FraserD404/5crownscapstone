@@ -230,7 +230,7 @@ public class Game{
         masterDeck.clear();
         discardDeck.clear();
         deckCreate();
-        
+
         /*
         End of rebuilding the decks & hands
          */
