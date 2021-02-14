@@ -13,9 +13,9 @@ public class Game{
     public static final CardPile masterDeck = new CardPile();
     public static CardPile discardDeck = new CardPile();
     private final String[] suits = new String[5];
-    private final Player[] players;
-    private final String[] botsNames = {"Beeper", "Booper", "Viking"};
-    private HashMap<String, Integer> scoreTable;
+    private ArrayList<Player> players = new ArrayList<>();
+    private String[] botsNames = {"Beeper", "Booper", "Viking"};
+    private HashMap<String, Integer> scoreTable = new HashMap<String, Integer>();
 
 
     public static boolean finalFrenzy;
@@ -25,7 +25,6 @@ public class Game{
     public Game(int numPlayers) {
         //Sets number of players for later
         playerNum = numPlayers;
-        players = new Player[numPlayers];
         matchSetup();
 
         //Sets suits in suits[]
@@ -120,34 +119,32 @@ public class Game{
         }
 
         //Update player hand scores
+        /*
+        TODO: MAKE THIS DRY COMPLIANT
+         */
+
         else{
             //Player
-            for (Card c : players[0].playerHand){
+            for (Card c : players.get(0).playerHand){
                 tempScore += c.getValue();
             }
-            scoreTable.put(players[0].getName(), tempScore);
+            scoreTable.put(players.get(0).getName(), tempScore);
             tempScore = 0;
 
             //Bot 1
-            for (Card c : players[1].playerHand){
+            for (Card c : players.get(1).playerHand){
                 tempScore += c.getValue();
             }
             scoreTable.put(botsNames[0], tempScore);
             tempScore = 0;
 
             //Bot 2
-            for (Card c : players[2].playerHand){
+            for (Card c : players.get(1).playerHand){
                 tempScore += c.getValue();
             }
             scoreTable.put(botsNames[1], tempScore);
             tempScore = 0;
 
-            //Bot 3
-            for (Card c : players[3].playerHand){
-                tempScore += c.getValue();
-            }
-            scoreTable.put(botsNames[2], tempScore);
-            tempScore = 0;
         }
     }
 
@@ -195,26 +192,27 @@ public class Game{
         // Player Set up
 
         Scanner inner = new Scanner(System.in);
+
         qPrint("Welcome to Five Crowns!");
         qPrint("Please Enter Your Name: ");
+
         String name1 = inner.next();
 
-        players[0] = new Player(name1, false);
+        Player a = new Player(name1, false);
+        players.add(a);
 
-        players[1] = new Player(botsNames[0], true);
+        Player b = new Player(botsNames[0], true);
+        players.add(b);
 
-        players[2] = new Player(botsNames[1], true);
-
-        players[3] = new Player(botsNames[2], true);
+        Player c = new Player(botsNames[1], true);
+        players.add(c);
 
         // Scoring set up
 
         scoreTable.put(name1, 0);
         scoreTable.put(botsNames[0], 0);
         scoreTable.put(botsNames[1], 0);
-        scoreTable.put(botsNames[2], 0);
 
-        //qPrint("Players Created");
     }
 
     private void dealHands(int turn){
@@ -228,20 +226,29 @@ public class Game{
         for (Player p : players) {
             p.playerHand.clear();
         }
+
         masterDeck.clear();
+        discardDeck.clear();
         deckCreate();
-        //End of rebuilding
+        
+        /*
+        End of rebuilding the decks & hands
+         */
+
+        /*
+        Shuffles the deck
+         */
 
         masterDeck.shuffle();
 
+        /*
+        This little method deals the cards to each player's hands
+         */
         for (int player = 0; player < playerNum; player++){
-            //if turn = 3, then 3 cards will be dealt per hand
-            // *technically* not how dealing in physical 5C works :)
-            int c = getRandomNum(masterDeck.size() - 1);
             for (int i = 0; i < turn; i++){
                 //qPrint("about to add from masterDeck with value " + c + " at size " + masterDeck.getSize());
-                players[player].playerHand.add(masterDeck.get(c));
-                masterDeck.remove(c);
+                players.get(player).playerHand.add(masterDeck.get(i));
+                masterDeck.remove(i);
             }
         }
     }

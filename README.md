@@ -1,6 +1,7 @@
 # jCrowns 
 ###### 5 Crowns Simulator written in Java
 
+
 ### Project Structure:
 Capstone-5Crowns/src/com/company | **Directory where all classes are stored** <br/>
 Card.java  | **Card class that stores the value and suit of each Card** <br/>

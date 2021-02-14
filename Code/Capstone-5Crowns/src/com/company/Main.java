@@ -5,7 +5,15 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) {
+        /*
+        The game
+         */
         Game goTime = new Game(3);
+
+        /*
+        Initialises the GUI, then runs the game
+         */
+        //GameLayer theGame = new GameLayer();
     }
 }
 
