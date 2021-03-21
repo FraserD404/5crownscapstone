@@ -1,7 +1,4 @@
 package com.company;
-import javax.management.ConstructorParameters;
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -154,6 +151,37 @@ public class Game{
 
         
         return true;
+    }
+
+    int scoreHand(int player){
+        int tempScore = 0;
+
+        //sort the hands
+        players.get(player).playerHand.sort(Comparator.comparing(Card::getValue));
+
+        //put all cards into a frequency map
+        HashMap<Integer,Integer> frequencymap = new HashMap<Integer,Integer>();
+        for (Card v : players.get(player).playerHand) {
+            if(frequencymap.containsKey(v.getValue())) {
+                frequencymap.put(v.getValue(), frequencymap.get(v.getValue())+1);
+            }
+            else{ frequencymap.put(v.getValue(), 1); }
+        }
+
+        //add up all cards that are not in 3's
+        Iterator it = frequencymap.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            if((Integer)pair.getValue() < 3){
+                tempScore+=((Integer)pair.getValue()*(Integer)pair.getKey());
+            }
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+
+        //now apply the wild cards
+
+
+        return tempScore;
     }
 
     private void checkDeck(){
