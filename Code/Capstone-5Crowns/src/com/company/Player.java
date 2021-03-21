@@ -54,6 +54,7 @@ public class Player {
 
     //Does Bot Routines
     private void doBotRoutines() {
+        /*
         int botChoice;
         int cardChoice;
 
@@ -77,7 +78,7 @@ public class Player {
             botFromPile();
         }
 
-
+*/
     }
 
     private void qPrint(String a) {

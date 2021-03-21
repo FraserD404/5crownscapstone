@@ -76,6 +76,9 @@ public class Game{
         //Round goes from 3-13 inclusive, as defined in the for loop above
         dealHands(round);
 
+        /*
+        TODO: CHANGE ALL THE BOTS FROM THE PLAYER CLASS TO THE BOT CLASS
+         */
         while (!finalFrenzy) {
             for (Player c : players) {
                 //TEMPORARY CODE TO SKIP BOT'S TURNS

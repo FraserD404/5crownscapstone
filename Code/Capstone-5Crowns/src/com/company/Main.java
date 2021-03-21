@@ -8,8 +8,12 @@ public class Main {
         /*
         The game
          */
-        Game goTime = new Game(3);
 
+        //Game goTime = new Game(3);
+
+        Bot tester = new Bot("Py", 3);
+
+        tester.pyTest();
         /*
         Initialises the GUI, then runs the game
          */
