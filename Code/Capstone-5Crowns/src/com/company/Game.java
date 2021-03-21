@@ -57,7 +57,6 @@ public class Game{
             roundLogic(round);
         }
 
-        scoreHands(1);
     }
 
     /*
@@ -96,10 +95,11 @@ public class Game{
                     turn +=1;
                 }
 
-                if(finalFrenzy){
-                    scoreHands(0);
-                    break;
-                }
+                /*
+                TODO: FIX THIS AND HAVE IT BASICALLY AS A VERIFICATION METHOD
+                 HAVE checkHPHand only run when option 3 in menu() is selected
+                 WILL HAVE TO FIGURE NEW
+                 */
             }
         }
 
@@ -108,25 +108,27 @@ public class Game{
         turn = 1;
     }
 
-    // TODO: THIS SCORING METHOD ISN'T THE PROPER WAY TO DO STUFF
-    // TODO: FIX THIS WHEN GOING OUT IS POSSIBLE
-    // Thought: zero out every card when go out is possible to make things easier
-    // Fix this some time in the future
 
-    private void scoreHands(int end){
-
-        int tempScore = 0;
-        // Display final scores
-        if (end == 1){
-
-        }
-
-        //Update player hand scores
+    /*
+    Returns TRUE if HP can go out
+    Returns FALSE if HP can NOT go out
+     */
+    private boolean checkHPHand(int end){
         /*
-        TODO: MAKE THIS DRY COMPLIANT
+        This only scores the human player's hand, rather than the bots hand (as of right now)
+            Implementation:
+            Asks player what cards go where to form which groupings
+            Groupings are straights and X of a kinds (X >= 3)
          */
 
-        else{
+        /*
+        Copies the HP Hand into a temporary variable to make syntax easier
+         */
+        CardPile hpHandTemp = players.get(0).playerHand;
+
+
+
+        /*else{
             //Player
             for (Card c : players.get(0).playerHand){
                 tempScore += c.getValue();
@@ -147,8 +149,11 @@ public class Game{
             }
             scoreTable.put(botsNames[1], tempScore);
             tempScore = 0;
-
         }
+        */
+
+        
+        return true;
     }
 
     private void checkDeck(){
@@ -204,10 +209,10 @@ public class Game{
         Player a = new Player(name1, false);
         players.add(a);
 
-        Player b = new Player(botsNames[0], true);
+        Bot b = new Bot(botsNames[0], 1);
         players.add(b);
 
-        Player c = new Player(botsNames[1], true);
+        Bot c = new Bot(botsNames[1], 2);
         players.add(c);
 
         // Scoring set up
@@ -271,10 +276,6 @@ public class Game{
     private void LogIt(String inLogentry){
         qPrint(inLogentry);
     }
-
-    /*
-    PUBLIC METHODS
-     */
 
     public boolean isFinalFrenzy() {
         return finalFrenzy;

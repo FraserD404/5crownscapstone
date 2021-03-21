@@ -80,53 +80,53 @@ public class Bot extends Player{
         Card highestDeltaCard = null;
 
         /*
-        TODO: this isn't DRY complaint so come back and fix this
+        Loops through the entire deck to get the highest delta card out
          */
         for (Card c : this.playerHand){
-
-            if (c.getValue() > topDiscardCard.getValue()){
-                // No need to worry about going into the negatives here since it will always be >= 1
+            if (c.getValue() > topDiscardCard.getValue() && (c.getValue() - topDiscardCard.getValue()) > delta){
                 delta = c.getValue() - topDiscardCard.getValue();
                 highestDeltaCard = c;
             }
+        }
 
-            /*
-            No cards in the deck are larger than this card
-             */
-            if (delta == 0){
-                discardDeck.add(topDiscardCard);
-            }
-            else{
-                this.playerHand.remove(highestDeltaCard);
-                this.playerHand.add(topDiscardCard);
-                discardDeck.addCardToTop(highestDeltaCard);
-            }
+        /*
+        No cards in the deck are larger than this card
+        */
+        if (delta == 0){
+            discardDeck.add(topDiscardCard);
+        }
+        else{
+            this.playerHand.remove(highestDeltaCard);
+            this.playerHand.add(topDiscardCard);
+            discardDeck.addCardToTop(highestDeltaCard);
             madeMove = true;
         }
+
 
         /*
         Checks if it already discarded and added a card
         If it didn't, then it draws from the deck
         Also resets the value of delta and the highest delta card value
          */
-
         delta = 0;
         highestDeltaCard = null;
 
+        /*
+        Only runs if player has already taken from discard deck
+        No double dipping!! >:o
+         */
         if(!madeMove){
             Card drawnCard = masterDeck.removeTopCard();
 
-            for(Card c : this.playerHand){
-                if (c.getValue() > drawnCard.getValue()){
-                    // No need to worry about going into the negatives here since it will always be >= 1
-                    delta = c.getValue() - drawnCard.getValue();
-                    highestDeltaCard = c;
+            for(Card a : this.playerHand){
+                if (a.getValue() > drawnCard.getValue() && (a.getValue() - drawnCard.getValue()) > delta){
+                    delta = a.getValue() - drawnCard.getValue();
+                    highestDeltaCard = a;
                 }
-
             }
 
             /*
-            No cards in the deck are larger than this card
+            No cards in the deck are larger than this card & hand stays the same
              */
             if (delta == 0){
                 discardDeck.add(drawnCard);
@@ -137,11 +137,9 @@ public class Bot extends Player{
                 discardDeck.addCardToTop(highestDeltaCard);
             }
         }
+
     }
 
-    private int cmprCards(Card c1, Card c2){
-        return 0;
-    }
     /*
     This bot interacts with the python ML model and uses it to make its decisions
      */
